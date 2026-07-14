@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import { Font } from 'astro:assets';
 import { SITE } from '@/site.config';
+import { withBase } from '@/utils/url';
 import Analytics from '@vercel/analytics/astro'   // optional, remove if not using Vercel Analytics
 
 
@@ -18,13 +19,13 @@ const fullTitle = pageTitle.includes(SITE.name)
   : `${pageTitle} · ${SITE.name}`;
 const description = pageDescription || SITE.description;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const socialImage = new URL(image || '/og-image.png', Astro.site);
+const socialImage = new URL(withBase(image || '/og-image.png'), Astro.site);
 ---
 
 {/* Global Metadata */}
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
 <meta name="generator" content={Astro.generator} />
 <meta name="author" content={SITE.name} />
 
@@ -35,7 +36,7 @@ const socialImage = new URL(image || '/og-image.png', Astro.site);
 <title>{fullTitle}</title>
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
-<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="sitemap" href={withBase('/sitemap-index.xml')} />
 
 {/* Open Graph / Facebook */}
 <meta property="og:type" content="website" />
@@ -55,14 +56,14 @@ const socialImage = new URL(image || '/og-image.png', Astro.site);
 <link
   rel="icon"
   type="image/png"
-  href="/favicons/favicon-96x96.png"
+  href={withBase('/favicons/favicon-96x96.png')}
   sizes="96x96"
 />
-<link rel="shortcut icon" href="/favicons/favicon.ico" />
+<link rel="shortcut icon" href={withBase('/favicons/favicon.ico')} />
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/favicons/apple-touch-icon.png"
+  href={withBase('/favicons/apple-touch-icon.png')}
 />
 
 {/* Optional */}

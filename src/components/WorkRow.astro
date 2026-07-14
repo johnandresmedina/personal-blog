@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { withBase } from '@/utils/url';
 
 interface Props {
   entry: CollectionEntry<'work'>;
@@ -12,7 +13,7 @@ const stamp = `${date.getFullYear()} · ${String(date.getMonth() + 1).padStart(2
 ---
 
 <a
-  href={`/work/${entry.id}`}
+  href={withBase(`/work/${entry.id}`)}
   class="group border-line hover:border-signal grid grid-cols-[3.5rem_1fr_auto] items-center gap-4 border-b py-5 transition-colors sm:grid-cols-[4.5rem_1fr_auto] sm:gap-6"
 >
   <span class="text-ink-soft font-mono text-xs">{stamp}</span>

@@ -5,20 +5,17 @@ import tailwindcss from "@tailwindcss/vite";
 
 // Replace with your production URL after deploying to Vercel / Netlify.
 // It powers the sitemap and the canonical / Open Graph URLs in BaseLayout.
-const SITE_URL = "https://astro-starter-portfolio.vercel.app";
+const SITE_URL = "https://johnandresmedina.github.io";
 
 export default defineConfig({
   site: SITE_URL,
-
+  // GitHub Pages project sites (repo not named <user>.github.io) are served
+  // under a subpath — this must match the repository name.
+  base: "/blog",
   integrations: [sitemap()],
-
   // Prefetches internal links on hover/viewport entry for near-instant navigation.
   prefetch: true,
-
-  vite: {
-    plugins: [tailwindcss()],
-  },
-
+  vite: { plugins: [tailwindcss()] },
   // Astro's built-in Fonts API: self-hosts and optimizes these at build time
   // (no Google-hosted requests, no extra npm packages, automatic preloading).
   // Each cssVariable below is consumed in src/styles/global.css inside the
